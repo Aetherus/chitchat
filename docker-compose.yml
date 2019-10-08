@@ -6,14 +6,7 @@ services:
     ports:
       - 80:4000
     entrypoint: bin/chitchat start
-    networks:
-      - chitchat
     deploy:
       mode: replicated
       replicas: 3
       endpoint_mode: vip
-
-networks:
-  chitchat:
-    driver: overlay
-    attachable: true
