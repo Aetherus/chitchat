@@ -1,0 +1,16 @@
+<h1>Lobby</h1>
+<%= form_tag Routes.room_path(@conn, :index), [method: :get, id: "roomPicker"] do %>
+  <%= tag :input, name: "room" %>
+  <%= content_tag :button, "Enter Room", type: "submit" %>
+<% end %>
+
+<script>
+$(function() {
+  $('#roomPicker').on('submit', function(event) {
+    event.preventDefault();
+    var url = $(event.target).attr('action');
+    var room = $(event.target).find('input[name="room"]').val();
+    window.location.href = url + '/' + room;
+  })
+})
+</script>

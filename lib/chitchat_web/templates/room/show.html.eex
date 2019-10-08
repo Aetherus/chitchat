@@ -1,0 +1,25 @@
+<div id="messagesContainer"></div>
+
+<form id="messageForm">
+  <input id="messageInput"/>
+  <button>Send</button>
+</form>
+
+<script>
+$(function() {
+  var channel = socket.channel('room:<%= @room %>', {});
+  channel.join();
+  channel.on('shout', function(payload) {
+    $('<p class="alert alert-info"/>').text(payload.text).appendTo('#messagesContainer');
+  })
+
+  $('#messageForm').on('submit', function(event) {
+    event.preventDefault();
+    var text = $('#messageInput').val();
+    if (text) {
+      channel.push('shout', {text: text});
+      $('#messageInput').val('');
+    }
+  })
+})
+</script>
