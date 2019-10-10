@@ -1,3 +1,7 @@
+<p class="alert alert-warning">
+  Successfully joined room <b id="room"></b> on node <b id="node"></b>
+</p>
+
 <div id="messagesContainer"></div>
 
 <form id="messageForm">
@@ -8,10 +12,13 @@
 <script>
 $(function() {
   var channel = socket.channel('room:<%= @room %>', {});
-  channel.join();
+  channel.join().receive("ok", function(payload) {
+    $('#room').text(payload.room);
+    $('#node').text(payload.node);
+  });
   channel.on('shout', function(payload) {
     $('<p class="alert alert-info"/>').text(payload.text).appendTo('#messagesContainer');
-  })
+  });
 
   $('#messageForm').on('submit', function(event) {
     event.preventDefault();
@@ -20,6 +27,6 @@ $(function() {
       channel.push('shout', {text: text});
       $('#messageInput').val('');
     }
-  })
+  });
 })
 </script>

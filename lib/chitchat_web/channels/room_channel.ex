@@ -6,7 +6,7 @@ defmodule ChitchatWeb.RoomChannel do
   end
 
   def join("room:" <> room, _payload, socket) do
-    {:ok, assign(socket, :room, room)}
+    {:ok, %{room: room, node: to_string(Node.self)}, socket}
   end
 
   # It is also common to receive messages from the client and

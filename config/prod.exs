@@ -2,7 +2,7 @@ use Mix.Config
 
 config :peerage, via: Peerage.Via.Dns,
   dns_name: "tasks.chitchat_app",
-  app_name: "chitchat"
+  app_name: {:system, "RELEASE_NAME"}
 
 # For production, don't forget to configure the url host
 # to something meaningful, Phoenix uses this information

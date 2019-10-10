@@ -17,8 +17,7 @@ ENV MIX_ENV=prod
 # install mix dependencies
 COPY mix.exs mix.lock ./
 COPY config config
-ENV HEX_HTTP_CONCURRENCY=1 HEX_HTTP_TIMEOUT=120
-RUN mix deps.get
+RUN HEX_HTTP_CONCURRENCY=1 HEX_HTTP_TIMEOUT=1200 mix deps.get
 RUN mix deps.compile
 
 # build assets
