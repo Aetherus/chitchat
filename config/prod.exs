@@ -1,8 +1,14 @@
 use Mix.Config
 
-config :peerage, via: Peerage.Via.Dns,
-  dns_name: "tasks.chitchat_app",
-  app_name: {:system, "RELEASE_NAME"}
+config :libcluster, :topologies, [
+  chitchat: [
+    strategy: Cluster.Strategy.DNSPoll,
+    config: [
+      query: "tasks.app",
+      node_basename: "chitchat"
+    ]
+  ]
+]
 
 # For production, don't forget to configure the url host
 # to something meaningful, Phoenix uses this information

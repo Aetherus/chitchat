@@ -4,7 +4,7 @@ defmodule Chitchat.MixProject do
   def project do
     [
       app: :chitchat,
-      version: "0.1.12",
+      version: "0.2.0",
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
@@ -39,7 +39,7 @@ defmodule Chitchat.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:peerage, "~> 1.0", only: :prod}
+      {:libcluster, "~> 3.1", only: :prod}
     ]
   end
 end
